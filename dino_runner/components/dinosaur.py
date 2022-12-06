@@ -40,7 +40,7 @@ class Dinosaur(Sprite):
         elif user_input[pygame.K_DOWN] and not self.dino_jump:
             self.dino_jump = False
             self.dino_run = False
-            self.dino_rect = True
+            self.dino_duck = True
 
         elif not (self.dino_jump or self.dino_duck):
             self.dino_jump = False
