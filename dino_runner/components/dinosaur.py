@@ -1,7 +1,7 @@
 from pygame.sprite import Sprite
 import pygame
 
-from dino_runner.utils.constants import JUMPING, RUNNING, DUCKING
+from dino_runner.utils.constants import JUMPING, RUNNING 
 
 class Dinosaur(Sprite):
     X_POS = 80
