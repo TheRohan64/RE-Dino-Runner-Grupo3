@@ -1,9 +1,11 @@
 import pygame
+import random
 
 from dino_runner.components.dinosaur import Dinosaur
-from dino_runner.components.obstacles.cactus import Cactus
+from dino_runner.components.obstacles import cactus, bird, obstacle
+from dino_runner.components.obstacles.obstacle import Obstacle
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, SMALL_CACTUS, TITLE, FPS
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, SMALL_CACTUS, LARGE_CACTUS, BIRD, TITLE, FPS
 
 
 class Game:
@@ -18,7 +20,8 @@ class Game:
         self.x_pos_bg = 0
         self.y_pos_bg = 380
         self.player = Dinosaur()
-        self.obstacles = [Cactus(SMALL_CACTUS)]
+        self.obstacle = obstacle
+        self.obstacles = []
 
     def run(self):
         # Game loop: events - update - draw
@@ -37,14 +40,25 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
-        self.obstacles[0].update(self.game_speed, self.obstacles)
+        for self.obstacle in self.obstacles:
+            self.obstacle.update(self.game_speed)
+
+    def draw_obstacles(self):
+        if len(self.obstacles) == 0:
+            if random.randint(0, 2) == 0:
+                self.obstacles.append(cactus[SMALL_CACTUS])
+            elif random.randint(0, 2) == 1:
+                self.obstacles.append(cactus[LARGE_CACTUS])
+            elif random.randint(0, 2) == 2:
+                self.obstacles.append(bird[BIRD])
 
     def draw(self):
         self.clock.tick(FPS)
         self.screen.fill((255, 255, 255))
         self.draw_background()
         self.player.draw(self.screen)
-        self.obstacles[0].draw(self.screen)
+        for self.obstacle in self.obstacles:
+            self.obstacle.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 
