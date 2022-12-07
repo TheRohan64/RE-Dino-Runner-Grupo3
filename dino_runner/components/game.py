@@ -19,8 +19,7 @@ class Game:
         self.x_pos_bg = 0
         self.y_pos_bg = 380
         self.player = Dinosaur()
-        self.obstacle = obstacle
-        self.obstacles = []
+        self.obstacle = [cactus(SMALL_CACTUS)]
 
     def run(self):
         # Game loop: events - update - draw
@@ -39,8 +38,7 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
-        for self.obstacle in self.obstacles:
-            self.obstacle.update(self.game_speed)
+        self.obstacles[0].update(self.game_speed)
 
     def draw_obstacles(self):
         if len(self.obstacles) == 0:
@@ -56,8 +54,7 @@ class Game:
         self.screen.fill((255, 255, 255))
         self.draw_background()
         self.player.draw(self.screen)
-        for self.obstacle in self.obstacles:
-            self.obstacle.draw(self.screen)
+        self.obstacles[0].draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 
