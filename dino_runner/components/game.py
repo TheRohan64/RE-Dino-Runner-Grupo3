@@ -1,8 +1,7 @@
 import pygame
-import random
 
 from dino_runner.components.dinosaur import Dinosaur
-from dino_runner.components.obstacles import cactus, bird, obstacle
+from dino_runner.components.obstacles import cactus
 
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, SMALL_CACTUS, LARGE_CACTUS, BIRD, TITLE, FPS
 
@@ -39,15 +38,6 @@ class Game:
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
         self.obstacles[0].update(self.game_speed)
-
-    def draw_obstacles(self):
-        if len(self.obstacles) == 0:
-            if random.randint(0, 2) == 0:
-                self.obstacles.append(cactus[SMALL_CACTUS])
-            elif random.randint(0, 2) == 1:
-                self.obstacles.append(cactus[LARGE_CACTUS])
-            elif random.randint(0, 2) == 2:
-                self.obstacles.append(bird[BIRD])
 
     def draw(self):
         self.clock.tick(FPS)
