@@ -50,7 +50,7 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
-        self.obstacle_manager.update(self)
+        self.obstacle_manager.update(self, self.death_count)
         self.score.update(self)
 
     def draw(self):
@@ -77,22 +77,22 @@ class Game:
         self.screen.fill((255, 255, 255))
         half_screen_width = SCREEN_WIDTH // 2
         half_screen_height = SCREEN_HEIGHT // 2
+        font = pygame.font.Font(FONT_STYLE, 30)
         if self.death_count == 0:
-            font = pygame.font.Font(FONT_STYLE, 30)
-            text_component_1 = font.render("Press any key to play", True, (0, 0, 0))
+            text_component = font.render("Press any key to play", True, (0, 0, 0)) 
+            text_component_1 = font.render("Welcome to my game", True, (0, 0, 0))
             text_rect = text_component_1.get_rect()
-            text_rect.center = (half_screen_width, half_screen_height)
-            self.screen.blit(text_component_1, text_rect)
-            text_component_2 = font.render("Welcome to my game", True, (0, 0, 0))
-            text_rect = text_component_2.get_rect()
             text_rect.center = (half_screen_width, half_screen_height - 50)
-            self.screen.blit(text_component_2, text_rect)
-        else:
-            font = pygame.font.Font(FONT_STYLE, 30)
+            self.screen.blit(text_component_1, text_rect)
+        elif self.death_count > 0:
             text_component = font.render("Press any key to replay", True, (0, 0, 0))
-            text_rect = text_component.get_rect()
-            text_rect.center = (half_screen_width, half_screen_height)
-            self.screen.blit(text_component, text_rect)
+            score = font.render(f"Points: {self.points}", True, (0, 0, 0))
+            score_rect = score.get_rect()
+            score_rect.center = (half_screen_width, half_screen_height + 50)
+            self.screen.blit(score, score_rect)
+        text_rect = text_component.get_rect()
+        text_rect.center = (half_screen_width, half_screen_height)
+        self.screen.blit(text_component, text_rect)
         self.screen.blit(RUNNING[0], (half_screen_width - 35, half_screen_height + 140))
         pygame.display.update()
         self.handle_key_events_on_menu()
