@@ -9,7 +9,7 @@ class ObstacleManager():
     def __init__(self):
         self.obstacles = []
 
-    def update(self, game, death_count):
+    def update(self, game):
         if len(self.obstacles) == 0:
             if random.randint(0, 2) == 0:
                 self.obstacles.append(SmallCactus(SMALL_CACTUS))
@@ -22,8 +22,9 @@ class ObstacleManager():
             obstacle.update(game.game_speed, self.obstacles)
             if game.player.dino_rect.colliderect(obstacle.rect):
                 pygame.time.delay(1000)
-                death_count += 1
+                game.death_count += 1
                 game.playing = False
+                break
 
     def draw(self, screen):
         for obstacle in self.obstacles:
