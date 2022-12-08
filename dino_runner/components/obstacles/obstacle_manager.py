@@ -8,7 +8,7 @@ class ObstacleManager():
 
     def update(self, game):
         if len(self.obstacles) == 0:
-            self.obstacles.append(Cactus[SMALL_CACTUS])
+            self.obstacles.append(Cactus(SMALL_CACTUS))
 
         for obstacle in self.obstacles:
             obstacle.update(game.game_speed, self.obstacles)
@@ -20,3 +20,6 @@ class ObstacleManager():
     def draw(self, screen):
         for obstacle in self.obstacles:
             obstacle.draw(screen)
+
+    def reset_obstacles(self):
+        self.obstacles = []
