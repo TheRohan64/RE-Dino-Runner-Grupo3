@@ -8,7 +8,12 @@ class Bird(Obstacle):
         self.step_index = 0
         
     def draw(self, screen):
-        if self.step_index >= 8:
+        if self.step_index > 4:
+            self.type = 1
+        else:
+            self.type = 0
+            
+        if self.step_index == 9:
             self.step_index = 0
-        screen.blit(self.images[self.step_index // 4], self.rect)
+        screen.blit(self.images[self.type], self.rect)
         self.step_index += 1 

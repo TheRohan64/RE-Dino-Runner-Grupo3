@@ -87,7 +87,7 @@ class Game:
         elif self.death_count > 0:
             text_component_1 = font.render("Press any key to replay", True, (0, 0, 0))
             font = pygame.font.Font(FONT_STYLE, 20)
-            score = font.render(f"Points: {(self.game_speed - 2) * 2}", True, (0, 0, 0))
+            score = font.render(f"Points: {self.game_speed}", True, (0, 0, 0))
             score_rect = score.get_rect()
             score_rect.center = (half_screen_width, half_screen_height + 50)
             self.screen.blit(score, score_rect)
