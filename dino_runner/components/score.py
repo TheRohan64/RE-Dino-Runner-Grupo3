@@ -12,7 +12,7 @@ class Score:
 
     def draw(self, screen):
         font = pygame.font.Font(FONT_STYLE, 22)
-        text_component = font.render("Points: {self.score}", True, (0, 0, 0))
+        text_component = font.render(f"Points: {self.score}", True, (0, 0, 0))
         text_rect = text_component.get_rect()
         text_rect.center = (1000, 50)
         screen.blit(text_component, text_rect)
