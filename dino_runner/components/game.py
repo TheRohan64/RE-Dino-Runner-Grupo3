@@ -109,3 +109,4 @@ class Game:
                 self.executing = False
             elif event.type == pygame.KEYDOWN:
                 self.run()
+                self.game_speed = 20
