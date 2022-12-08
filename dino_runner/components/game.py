@@ -35,6 +35,8 @@ class Game:
         # Game loop: events - update - draw
         self.playing = True
         self.obstacle_manager.reset_obstacles()
+        self.player.reset_dinosaur()
+        self.score.reset_score()
         while self.playing:
             self.events()
             self.update()
@@ -77,12 +79,20 @@ class Game:
         half_screen_height = SCREEN_HEIGHT // 2
         if self.death_count == 0:
             font = pygame.font.Font(FONT_STYLE, 30)
-            text_component = font.render("Press any key to play", True, (0, 0, 0))
+            text_component_1 = font.render("Press any key to play", True, (0, 0, 0))
+            text_rect = text_component_1.get_rect()
+            text_rect.center = (half_screen_width, half_screen_height)
+            self.screen.blit(text_component_1, text_rect)
+            text_component_2 = font.render("Welcome to my game", True, (0, 0, 0))
+            text_rect = text_component_2.get_rect()
+            text_rect.center = (half_screen_width, half_screen_height - 50)
+            self.screen.blit(text_component_2, text_rect)
+        else:
+            font = pygame.font.Font(FONT_STYLE, 30)
+            text_component = font.render("Press any key to replay", True, (0, 0, 0))
             text_rect = text_component.get_rect()
             text_rect.center = (half_screen_width, half_screen_height)
             self.screen.blit(text_component, text_rect)
-        else:
-            pass
         self.screen.blit(RUNNING[0], (half_screen_width - 35, half_screen_height + 140))
         pygame.display.update()
         self.handle_key_events_on_menu()
