@@ -6,7 +6,7 @@ from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 from dino_runner.components.score import Score
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 
-from dino_runner.utils.constants import BG, DEFAULT_TYPE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, RUNNING, SHIELD_TYPE, TITLE, FONT_STYLE, FPS
+from dino_runner.utils.constants import BG, DEFAULT_TYPE, HAMMER_TYPE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, RUNNING, SHIELD_TYPE, TITLE, FONT_STYLE, FPS
 
 class Game:
     def __init__(self):
@@ -122,7 +122,7 @@ class Game:
                 self.game_speed = 20
 
     def on_death(self):
-        is_invencible = self.player.type == SHIELD_TYPE
+        is_invencible = self.player.type == SHIELD_TYPE and self.player.type == HAMMER_TYPE
         if not is_invencible:
             self.playing = False
             self.death_count += 1
