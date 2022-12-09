@@ -26,6 +26,7 @@ class Game:
         self.death_count = 0
         self.power_up_manager = PowerUpManager()
         self.cloud = Cloud()
+        self.sound =  pygame.mixer.Sound("Sounds/fnf_singularity_instrumental.mp3")
 
     def execute(self):
         self.executing = True
@@ -37,9 +38,7 @@ class Game:
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
-        pygame.mixer.music.load("Sounds/fnf_singularity_instrumental.ogg")
-        pygame.mixer.music.play(3)
-        pygame.mixer.music.set_volume(0.5)
+        self.sound.play()
         self.obstacle_manager.reset_obstacles()
         self.player.reset_dinosaur()
         self.cloud.reset_cloud()
