@@ -1,4 +1,3 @@
-import os
 import pygame
 from dino_runner.components.cloud import Cloud
 
@@ -27,6 +26,7 @@ class Game:
         self.death_count = 0
         self.power_up_manager = PowerUpManager()
         self.cloud = Cloud()
+        self.paused = False
 
     def execute(self):
         self.executing = True
@@ -38,8 +38,8 @@ class Game:
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
-        pygame.mixer.music.load("fnf_singularity_instrumental.wav")
-        pygame.mixer.music.play(-1)
+        #pygame.mixer.music.load("fnf_singularity_instrumental.wav")
+        #pygame.mixer.music.play(-1)
         self.obstacle_manager.reset_obstacles()
         self.player.reset_dinosaur()
         self.cloud.reset_cloud()
@@ -89,8 +89,8 @@ class Game:
         self.x_pos_bg -= self.game_speed
 
     def show_menu(self):
-        pygame.mixer.music.load("fnf_memory_instrumental.wav")
-        pygame.mixer.music.play(-1)
+        #pygame.mixer.music.load("fnf_memory_instrumental.wav")
+        #pygame.mixer.music.play(-1)
         self.screen.fill((64, 64, 255))
         half_screen_width = SCREEN_WIDTH // 2
         half_screen_height = SCREEN_HEIGHT // 2
@@ -143,15 +143,17 @@ class Game:
         text_rect.center = (half_screen_width, half_screen_height - 50)
         self.screen.blit(text_component_1, text_rect)
         pygame.display.update()
-        self.handle_key_events_on_menu_pause()
+        self.handle_key_events_on_menu_pause() 
 
     def handle_key_events_on_menu_pause(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.executing = False
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                not self.run()
-                
+        self.paused = True
+        while self.paused:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.paused = False
+                    self.playing = False
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    self.paused = False             
 
     def on_death(self):
         is_invencible = self.player.type == SHIELD_TYPE or self.player.type == HAMMER_TYPE
