@@ -26,12 +26,13 @@ class Game:
         self.death_count = 0
         self.power_up_manager = PowerUpManager()
         self.cloud = Cloud()
-        self.sound =  pygame.mixer.Sound("Sounds/fnf_singularity_instrumental.mp3")
 
     def execute(self):
         self.executing = True
         while self.executing:
+            pygame.mixer.music.load("Sounds/fnf_singularity_instrumental.ogg")
             if not self.playing:
+                pygame.mixer.music.load("Sounds/fnf_memory_instrumental.ogg")
                 self.show_menu()
         pygame.quit()
 
