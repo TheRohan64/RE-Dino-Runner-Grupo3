@@ -70,6 +70,10 @@ CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
+##SHOW_MENU_SOUND = pygame.mixer.music.load("sounds/fnf_memory_instrumental.mp3")
+##pygame.mixer.music.play(3)
+##pygame.mixer.music.set_volume(0.5)
+
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))

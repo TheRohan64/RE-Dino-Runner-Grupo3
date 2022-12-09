@@ -37,6 +37,9 @@ class Game:
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
+        pygame.mixer.music.load("Sounds/fnf_singularity_instrumental.ogg")
+        pygame.mixer.music.play(3)
+        pygame.mixer.music.set_volume(0.5)
         self.obstacle_manager.reset_obstacles()
         self.player.reset_dinosaur()
         self.cloud.reset_cloud()
@@ -51,6 +54,8 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                self.show_menu_pause()
 
     def update(self):
         user_input = pygame.key.get_pressed()
@@ -120,6 +125,31 @@ class Game:
             elif event.type == pygame.KEYDOWN:
                 self.run()
                 self.game_speed = 20
+
+    def show_menu_pause(self):
+        self.screen.fill((64, 64, 255))
+        half_screen_width = SCREEN_WIDTH // 2
+        half_screen_height = SCREEN_HEIGHT // 2
+        font = pygame.font.Font(FONT_STYLE, 30)
+        text_component = font.render("Press mouse to play", True, (255, 255, 255)) 
+        text_rect = text_component.get_rect()
+        text_rect.center = (half_screen_width, half_screen_height)
+        self.screen.blit(text_component, text_rect)
+        font = pygame.font.Font(FONT_STYLE, 25)
+        text_component_1 = font.render("Pause", True, (0, 0, 0))
+        text_rect = text_component_1.get_rect()
+        text_rect.center = (half_screen_width, half_screen_height - 50)
+        self.screen.blit(text_component_1, text_rect)
+        pygame.display.update()
+        self.handle_key_events_on_menu_pause()
+
+    def handle_key_events_on_menu_pause(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.executing = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                not self.run()
+                
 
     def on_death(self):
         is_invencible = self.player.type == SHIELD_TYPE or self.player.type == HAMMER_TYPE
