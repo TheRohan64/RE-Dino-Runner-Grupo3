@@ -30,16 +30,15 @@ class Game:
     def execute(self):
         self.executing = True
         while self.executing:
-            if self.playing:
-                pygame.mixer.music.load("Sounds/fnf_singularity_instrumental.ogg").convert()
-            elif not self.playing:
-                pygame.mixer.music.load("Sounds/fnf_memory_instrumental.ogg").convert()
+            if not self.playing:
                 self.show_menu()
         pygame.quit()
 
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
+        pygame.mixer.music.load("Sounds/fnf_singularity_instrumental.ogg")
+        pygame.mixer.play(3)
         self.obstacle_manager.reset_obstacles()
         self.player.reset_dinosaur()
         self.cloud.reset_cloud()
@@ -89,6 +88,8 @@ class Game:
         self.x_pos_bg -= self.game_speed
 
     def show_menu(self):
+        pygame.mixer.music.load("Sounds/fnf_memory_instrumental.ogg")
+        pygame.mixer.play(2)
         self.screen.fill((64, 64, 255))
         half_screen_width = SCREEN_WIDTH // 2
         half_screen_height = SCREEN_HEIGHT // 2
