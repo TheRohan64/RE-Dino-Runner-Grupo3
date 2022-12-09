@@ -61,6 +61,8 @@ BIRD = [
     pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird2.png")),
 ]
 
+CLOUD_RAY = pygame.image.load(os.path.join(IMG_DIR, "Bad_cloud/CloudRay.png"))
+
 CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
