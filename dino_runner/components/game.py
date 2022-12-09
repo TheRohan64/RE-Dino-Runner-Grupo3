@@ -30,16 +30,16 @@ class Game:
     def execute(self):
         self.executing = True
         while self.executing:
-            pygame.mixer.music.load("Sounds/fnf_singularity_instrumental.ogg")
-            if not self.playing:
-                pygame.mixer.music.load("Sounds/fnf_memory_instrumental.ogg")
+            if self.playing:
+                pygame.mixer.music.load("Sounds/fnf_singularity_instrumental.ogg").convert()
+            elif not self.playing:
+                pygame.mixer.music.load("Sounds/fnf_memory_instrumental.ogg").convert()
                 self.show_menu()
         pygame.quit()
 
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
-        self.sound.play()
         self.obstacle_manager.reset_obstacles()
         self.player.reset_dinosaur()
         self.cloud.reset_cloud()
