@@ -1,3 +1,4 @@
+import os
 import pygame
 from dino_runner.components.cloud import Cloud
 
@@ -37,8 +38,8 @@ class Game:
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
-        pygame.mixer.music.load("Sounds/fnf_singularity_instrumental.ogg")
-        pygame.mixer.play(3)
+        pygame.mixer.music.load("fnf_singularity_instrumental.wav")
+        pygame.mixer.music.play(3)
         self.obstacle_manager.reset_obstacles()
         self.player.reset_dinosaur()
         self.cloud.reset_cloud()
@@ -88,8 +89,8 @@ class Game:
         self.x_pos_bg -= self.game_speed
 
     def show_menu(self):
-        pygame.mixer.music.load("Sounds/fnf_memory_instrumental.ogg")
-        pygame.mixer.play(2)
+        pygame.mixer.music.load("fnf_memory_instrumental.wav")
+        pygame.mixer.music.play(2)
         self.screen.fill((64, 64, 255))
         half_screen_width = SCREEN_WIDTH // 2
         half_screen_height = SCREEN_HEIGHT // 2
