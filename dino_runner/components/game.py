@@ -6,7 +6,7 @@ from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 from dino_runner.components.score import Score
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 
-from dino_runner.utils.constants import BG, DEFAULT_TYPE, HAMMER_TYPE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, RUNNING, SHIELD_TYPE, THUNDERBOLT_TYPE, TITLE, FONT_STYLE, FPS
+from dino_runner.utils.constants import BG, DEFAULT_TYPE, DINO_DEAD, GAME_OVER, HAMMER_TYPE, ICON, PAUSE, RESET, SCREEN_HEIGHT, SCREEN_WIDTH, RUNNING, SHIELD_TYPE, THUNDERBOLT_TYPE, TITLE, FONT_STYLE, FPS
 
 class Game:
     def __init__(self):
@@ -101,6 +101,7 @@ class Game:
             text_rect = text_component_2.get_rect()
             text_rect.center = (half_screen_width, half_screen_height - 50)
             self.screen.blit(text_component_2, text_rect)
+            self.screen.blit(RUNNING[0], (half_screen_width - 35, half_screen_height + 110))
         elif self.death_count > 0:
             text_component_1 = font.render("Press any key to replay", True, (0, 0, 0))
             font = pygame.font.Font(FONT_STYLE, 20)
@@ -113,10 +114,11 @@ class Game:
             deaths_rect = deaths.get_rect()
             deaths_rect.center = (half_screen_width, half_screen_height - 50)
             self.screen.blit(deaths, deaths_rect)
+            self.screen.blit(DINO_DEAD, (half_screen_width - 35, half_screen_height + 110))
+            self.screen.blit(RESET, (half_screen_width - 35, half_screen_height - 150))
         text_rect = text_component_1.get_rect()
         text_rect.center = (half_screen_width, half_screen_height)
         self.screen.blit(text_component_1, text_rect)
-        self.screen.blit(RUNNING[0], (half_screen_width - 35, half_screen_height + 140))
         pygame.display.update()
         self.handle_key_events_on_menu()
 
@@ -135,13 +137,9 @@ class Game:
         font = pygame.font.Font(FONT_STYLE, 30)
         text_component = font.render("Press mouse to play", True, (255, 255, 255)) 
         text_rect = text_component.get_rect()
-        text_rect.center = (half_screen_width, half_screen_height)
+        text_rect.center = (half_screen_width, half_screen_height + 30)
         self.screen.blit(text_component, text_rect)
-        font = pygame.font.Font(FONT_STYLE, 25)
-        text_component_1 = font.render("Pause", True, (0, 0, 0))
-        text_rect = text_component_1.get_rect()
-        text_rect.center = (half_screen_width, half_screen_height - 50)
-        self.screen.blit(text_component_1, text_rect)
+        self.screen.blit(PAUSE, (half_screen_width - 140, half_screen_height - 120))
         pygame.display.update()
         self.handle_key_events_on_menu_pause() 
 
