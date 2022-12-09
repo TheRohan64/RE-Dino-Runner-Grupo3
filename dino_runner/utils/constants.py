@@ -18,17 +18,23 @@ RUNNING = [
 
 RUNNING_SHIELD = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Shield.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2Shield.png")),
 ]
 
 RUNNING_HAMMER = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Hammer.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2Hammer.png")),
+]
+
+RUNNING_THUNDERBOLT = [
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Thunderbolt.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2Thunderbolt.png")),
 ]
 
 JUMPING = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJump.png"))
 JUMPING_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpShield.png"))
 JUMPING_HAMMER = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpHammer.png"))
+JUMPING_THUNDERBOLT = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpThunderbolt.png"))
 
 DUCKING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1.png")),
@@ -37,12 +43,17 @@ DUCKING = [
 
 DUCKING_SHIELD = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Shield.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2Shield.png")),
 ]
 
 DUCKING_HAMMER = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2Hammer.png")),
+]
+
+DUCKING_THUNDERBOLT = [
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Thunderbolt.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2Thunderbolt.png")),
 ]
 
 SMALL_CACTUS = [
@@ -69,6 +80,7 @@ CLOUD_RAY = [
 CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
+THUNDERBOLT = pygame.image.load(os.path.join(IMG_DIR, 'Other/thunderbolt.png'))
 CRUSHED = pygame.image.load(os.path.join(IMG_DIR, "Other/Crushed.png"))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
@@ -82,3 +94,5 @@ FONT_STYLE = "freesansbold.ttf"
 SHIELD_TYPE = "shield"
 
 HAMMER_TYPE = "hammer"
+
+THUNDERBOLT_TYPE = "thunderbolt"
