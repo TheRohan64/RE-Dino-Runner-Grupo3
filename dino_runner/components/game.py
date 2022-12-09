@@ -122,7 +122,7 @@ class Game:
                 self.game_speed = 20
 
     def on_death(self):
-        is_invencible = self.player.type == SHIELD_TYPE and self.player.type == HAMMER_TYPE
+        is_invencible = self.player.type == SHIELD_TYPE or self.player.type == HAMMER_TYPE
         if not is_invencible:
             self.playing = False
             self.death_count += 1

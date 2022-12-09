@@ -102,6 +102,8 @@ class Dinosaur(Sprite):
         self.dino_jump = False
         self.dino_duck = False
         self.jump_velocity = self.JUMP_VELOCITY
+        self.has_power_up = False
+        self.power_up_time_up = 0
 
     def on_pick_power_up(self, start_time, duration, type):
         self.has_power_up = True
