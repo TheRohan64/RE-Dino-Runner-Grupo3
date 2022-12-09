@@ -9,7 +9,7 @@ class Score:
         self.score += 1
         if self.score % 100 == 0:
             game.game_speed += 2
-        game.get_score = self.score - 1
+        game.get_score = self.score
 
     def draw(self, screen):
         font = pygame.font.Font(FONT_STYLE, 22)

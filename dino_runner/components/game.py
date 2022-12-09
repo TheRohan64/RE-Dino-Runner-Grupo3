@@ -1,11 +1,11 @@
 import pygame
 
 from dino_runner.components.dinosaur import Dinosaur
+from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 from dino_runner.components.score import Score
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, RUNNING, TITLE, FONT_STYLE, FPS
-
+from dino_runner.utils.constants import BG, DEFAULT_TYPE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, RUNNING, SHIELD_TYPE, TITLE, FONT_STYLE, FPS
 
 class Game:
     def __init__(self):
@@ -23,6 +23,7 @@ class Game:
         self.obstacle_manager = ObstacleManager()
         self.score = Score()
         self.death_count = 0
+        self.power_up_manager = PowerUpManager()
 
     def execute(self):
         self.executing = True
@@ -37,6 +38,7 @@ class Game:
         self.obstacle_manager.reset_obstacles()
         self.player.reset_dinosaur()
         self.score.reset_score()
+        self.power_up_manager.reset_power_ups()
         while self.playing:
             self.events()
             self.update()
@@ -52,6 +54,7 @@ class Game:
         self.player.update(user_input)
         self.obstacle_manager.update(self)
         self.score.update(self)
+        self.power_up_manager.update(self.game_speed, self.player, self.score.score)
 
     def draw(self):
         self.clock.tick(FPS)
@@ -60,6 +63,8 @@ class Game:
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
         self.score.draw(self.screen)
+        self.power_up_manager.draw(self.screen)
+        self.draw_power_up_activate()
 
         pygame.display.update()
         pygame.display.flip()
@@ -110,3 +115,25 @@ class Game:
             elif event.type == pygame.KEYDOWN:
                 self.run()
                 self.game_speed = 20
+
+    def on_death(self):
+        is_invencible = self.player.type == SHIELD_TYPE
+        if not is_invencible:
+            self.playing = False
+            self.death_count += 1
+        return is_invencible
+
+    def draw_power_up_activate(self):
+        half_screen_width = SCREEN_WIDTH // 2
+        half_screen_height = SCREEN_HEIGHT // 2
+        if self.player.has_power_up:
+            time_to_show = round((self.player.power_up_time_up - pygame.time.get_ticks())) / 1000
+            if time_to_show >= 0:
+                font = pygame.font.Font(FONT_STYLE, 25)
+                power_up = font.render(f"Power up: {time_to_show}", True, (0, 0, 0))
+                power_up_rect = power_up.get_rect()
+                power_up_rect.center = (half_screen_width, half_screen_height + 130)
+                self.screen.blit(power_up, power_up_rect)
+            else:
+                self.player.has_power_up = False
+                self.player.type = DEFAULT_TYPE
