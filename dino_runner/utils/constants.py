@@ -2,7 +2,7 @@ import pygame
 import os
 
 # Global Constants
-TITLE = "Chrome Dino Runner"
+TITLE = "Dino Run"
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
@@ -87,6 +87,15 @@ GAME_OVER = pygame.image.load(os.path.join(IMG_DIR, "Other/GameOver.png"))
 RESET = pygame.image.load(os.path.join(IMG_DIR, "Other/Reset.png"))
 PAUSE = pygame.image.load(os.path.join(IMG_DIR, "Other/Pause.png"))
 TROLL = pygame.image.load(os.path.join(IMG_DIR, "Other/Troll.png"))
+CLICK = pygame.image.load(os.path.join(IMG_DIR, "Other/Click.png"))
+POWER = pygame.image.load(os.path.join(IMG_DIR, "Other/Power.png"))
+SANIC = pygame.image.load(os.path.join(IMG_DIR, "Other/Sanic.png"))
+SUNKY = pygame.image.load(os.path.join(IMG_DIR, "Other/Sunky.png"))
+THE_DIE = pygame.image.load(os.path.join(IMG_DIR, "Other/The_die.png"))
+HYPNO = pygame.image.load(os.path.join(IMG_DIR, "Other/Hypno.gif"))
+CONGRATULATIONS = pygame.image.load(os.path.join(IMG_DIR, "Other/Congratulations.png"))
+MICKEY = pygame.image.load(os.path.join(IMG_DIR, "Other/Mickey.gif"))
+EMOJI = pygame.image.load(os.path.join(IMG_DIR, "Other/Emoji.png"))
 CRUSHED = pygame.image.load(os.path.join(IMG_DIR, "Other/Crushed.png"))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
