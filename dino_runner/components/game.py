@@ -49,6 +49,7 @@ class Game:
         self.score.reset_score()
         self.power_up_manager.reset_power_ups()
         self.cake_manager.reset_cakes()
+        self.game_speed = 20
         while self.playing:
             self.events()
             self.update()
@@ -134,7 +135,6 @@ class Game:
                 self.executing = False
             elif event.type == pygame.KEYDOWN:
                 self.run()
-                self.game_speed = 20
 
     def show_menu_pause(self):
         self.screen.fill((64, 64, 255))
@@ -212,6 +212,5 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.finalized = False
                     self.executing = False
-                elif event.type == pygame.KEYDOWN:
-                    self.game_speed = 20   
+                elif event.type == pygame.KEYDOWN:  
                     self.run()
