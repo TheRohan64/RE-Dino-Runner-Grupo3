@@ -29,6 +29,7 @@ class Game:
         self.cloud = Cloud()
         self.cake_manager = CakeManager()
         self.paused = False
+        self.finalized = False
 
     def execute(self):
         self.executing = True
@@ -66,7 +67,7 @@ class Game:
         self.obstacle_manager.update(self)
         self.score.update(self)
         self.power_up_manager.update(self.game_speed, self.player, self.score.score)
-        self.cake_manager.update(self.game_speed, self.player, self.score.score)
+        self.cake_manager.update(self.game_speed, self.player, self.score.score, self.show_menu_final)
 
     def draw(self):
         self.clock.tick(FPS)
@@ -178,3 +179,38 @@ class Game:
             else:
                 self.player.has_power_up = False
                 self.player.type = DEFAULT_TYPE
+
+    def show_menu_final(self):
+        self.screen.fill((64, 64, 255))
+        half_screen_width = SCREEN_WIDTH // 2
+        half_screen_height = SCREEN_HEIGHT // 2
+        font = pygame.font.Font(FONT_STYLE, 30)
+        text_component_1 = font.render("Press any key to replay", True, (0, 0, 0))
+        font = pygame.font.Font(FONT_STYLE, 20)
+        score = font.render(f"Points: {self.get_score}", True, (0, 0, 0))
+        score_rect = score.get_rect()
+        score_rect.center = (half_screen_width, half_screen_height + 50)
+        self.screen.blit(score, score_rect)
+        font = pygame.font.Font(FONT_STYLE, 25)
+        deaths = font.render(f"Deaths: {self.death_count}", True, (0, 0, 0))
+        deaths_rect = deaths.get_rect()
+        deaths_rect.center = (half_screen_width, half_screen_height - 50)
+        self.screen.blit(deaths, deaths_rect)
+        #self.screen.blit(DINO_DEAD, (half_screen_width - 35, half_screen_height + 110))
+        #self.screen.blit(RESET, (half_screen_width - 35, half_screen_height - 150))
+        text_rect = text_component_1.get_rect()
+        text_rect.center = (half_screen_width, half_screen_height)
+        self.screen.blit(text_component_1, text_rect)
+        pygame.display.update()
+        self.handle_key_events_on_menu_final()
+
+    def handle_key_events_on_menu_final(self):
+        self.finalized = True
+        while self.finalized:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.finalized = False
+                    self.playing = False
+                elif event.type == pygame.KEYDOWN:
+                    self.run()
+                    self.game_speed = 20
