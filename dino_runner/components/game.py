@@ -153,7 +153,7 @@ class Game:
         self.screen.blit(PAUSE, (half_screen_width - 140, half_screen_height - 120))
         self.screen.blit(CLICK, (half_screen_width + 140, half_screen_height - 20))
         self.screen.blit(HYPNO, (120, 470))
-        self.screen.blit(MICKEY, (800, 60))
+        self.screen.blit(MICKEY, (800, 50))
         pygame.display.update()
         self.handle_key_events_on_menu_pause() 
 
