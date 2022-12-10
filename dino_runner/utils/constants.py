@@ -86,6 +86,7 @@ CAKE = pygame.image.load(os.path.join(IMG_DIR, "Other/Cake.png"))
 GAME_OVER = pygame.image.load(os.path.join(IMG_DIR, "Other/GameOver.png"))
 RESET = pygame.image.load(os.path.join(IMG_DIR, "Other/Reset.png"))
 PAUSE = pygame.image.load(os.path.join(IMG_DIR, "Other/Pause.png"))
+TROLL = pygame.image.load(os.path.join(IMG_DIR, "Other/Troll.png"))
 CRUSHED = pygame.image.load(os.path.join(IMG_DIR, "Other/Crushed.png"))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))

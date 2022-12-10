@@ -7,7 +7,7 @@ from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 from dino_runner.components.score import Score
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 
-from dino_runner.utils.constants import BG, DEFAULT_TYPE, DINO_DEAD, GAME_OVER, HAMMER_TYPE, ICON, PAUSE, RESET, SCREEN_HEIGHT, SCREEN_WIDTH, RUNNING, SHIELD_TYPE, THUNDERBOLT_TYPE, TITLE, FONT_STYLE, FPS
+from dino_runner.utils.constants import BG, DEFAULT_TYPE, DINO_DEAD, HAMMER_TYPE, ICON, PAUSE, RESET, SCREEN_HEIGHT, SCREEN_WIDTH, RUNNING, SHIELD_TYPE, THUNDERBOLT_TYPE, TITLE, FONT_STYLE, FPS, TROLL
 
 class Game:
     def __init__(self):
@@ -123,6 +123,7 @@ class Game:
             self.screen.blit(deaths, deaths_rect)
             self.screen.blit(DINO_DEAD, (half_screen_width - 35, half_screen_height + 110))
             self.screen.blit(RESET, (half_screen_width - 35, half_screen_height - 150))
+            self.screen.blit(TROLL, (60, half_screen_height - 150))
         text_rect = text_component_1.get_rect()
         text_rect.center = (half_screen_width, half_screen_height)
         self.screen.blit(text_component_1, text_rect)
