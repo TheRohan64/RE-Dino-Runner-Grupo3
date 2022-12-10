@@ -9,7 +9,7 @@ class CakeManager():
 
     def generate_cake(self, score):
         self.when_appears = score
-        if len(self.cakes) == 0 and self.when_appears == 1000:
+        if len(self.cakes) == 0 and self.when_appears == 600:
             self.cakes.append(Cake())
         
     def update(self, game_speed, player, score, show_menu_final):
