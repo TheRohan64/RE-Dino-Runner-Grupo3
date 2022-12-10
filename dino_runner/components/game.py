@@ -2,6 +2,7 @@ import pygame
 from dino_runner.components.cloud import Cloud
 
 from dino_runner.components.dinosaur import Dinosaur
+from dino_runner.components.finish.cake_manager import CakeManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 from dino_runner.components.score import Score
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
@@ -26,6 +27,7 @@ class Game:
         self.death_count = 0
         self.power_up_manager = PowerUpManager()
         self.cloud = Cloud()
+        self.cake_manager = CakeManager()
         self.paused = False
 
     def execute(self):
@@ -64,6 +66,7 @@ class Game:
         self.obstacle_manager.update(self)
         self.score.update(self)
         self.power_up_manager.update(self.game_speed, self.player, self.score.score)
+        self.cake_manager.update(self.game_speed, self.player, self.score.score)
 
     def draw(self):
         self.clock.tick(FPS)
@@ -74,6 +77,7 @@ class Game:
         self.obstacle_manager.draw(self.screen)
         self.score.draw(self.screen)
         self.power_up_manager.draw(self.screen)
+        self.cake_manager.draw(self.screen)
         self.draw_power_up_activate()
 
         pygame.display.update()
