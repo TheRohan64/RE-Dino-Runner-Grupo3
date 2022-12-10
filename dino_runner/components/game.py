@@ -48,6 +48,7 @@ class Game:
         self.cloud.reset_cloud()
         self.score.reset_score()
         self.power_up_manager.reset_power_ups()
+        self.cake_manager.reset_cakes()
         while self.playing:
             self.events()
             self.update()
@@ -210,7 +211,7 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.finalized = False
-                    self.playing = False
+                    self.executing = False
                 elif event.type == pygame.KEYDOWN:
+                    self.game_speed = 20   
                     self.run()
-                    self.game_speed = 20

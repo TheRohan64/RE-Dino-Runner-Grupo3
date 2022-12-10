@@ -6,7 +6,7 @@ class Cake(Sprite):
     def __init__(self):
         self.image = CAKE
         self.rect = self.image.get_rect()
-        self.rect.x = SCREEN_WIDTH + randint (900, 1200)
+        self.rect.x = SCREEN_WIDTH + 900
         self.rect.y = 200
 
     def update(self, game_speed, cakes):
